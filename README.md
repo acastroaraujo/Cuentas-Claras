@@ -1,4 +1,4 @@
-Análisis rápido de financiación de candidatos a la alcaldía de Bogotá. El propósito de este repositorio es mostrar cómo se puede hacer un _análisis rápido_ en R.
+Análisis rápido de financiación de políticos colombianos. El propósito de este repositorio es mostrar cómo se puede hacer un _análisis rápido_ en R.
 
 Toda la información viende del portal Cuentas Claras.
 
