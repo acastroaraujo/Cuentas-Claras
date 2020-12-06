@@ -1,6 +1,8 @@
 
 # Borrador, funciones + análisis de algunos candidatos
 
+library(tidyverse)
+library(readxl)
 
 cc_buscador_territorial <- function(id, year = c("2015", "2019")) {
   
