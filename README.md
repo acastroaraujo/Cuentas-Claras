@@ -2,9 +2,9 @@ Análisis rápido de financiación de políticos colombianos. El propósito de e
 
 Toda la información viende del portal Cuentas Claras.
 
-https://www5.registraduria.gov.co/CuentasClarasPublicoTer2015/Consultas/Candidatos/
+- [Buscador legislativo](https://www5.registraduria.gov.co/CuentasClarasPublicoCon2018/Consultas/Candidatos/)
 
-https://www5.registraduria.gov.co/CuentasClarasPublicoTer2019/Consultas/Candidatos/
+- [Buscador territorial](https://www5.registraduria.gov.co/CuentasClarasPublicoTer2019/Consultas/Candidatos/)
 
 ****
 
