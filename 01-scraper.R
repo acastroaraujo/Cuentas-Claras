@@ -144,6 +144,8 @@ ingresos_particulares <- function(x) {
 
 descargar <- function(datos_buscador) {
   
+  if (any(class(datos_buscador) == "try-error")) stop("Los meta-datos no existen", call. = FALSE)
+  
   out1 <- download_excel(datos_buscador$href[[2]]) %>% 
     ingresos_familia()
   

@@ -2,8 +2,11 @@
 source("01-scraper.R")
 library(progress)
 
-infolder <- "metadatos-territorial/"
-outfolder <- "cuentas-territorial/"
+# infolder <- "metadatos-territorial/"
+# outfolder <- "cuentas-territorial/"
+
+infolder <- "metadatos-legislativo/"
+outfolder <- "cuentas-legislativo/"
 
 if (!dir.exists(outfolder)) dir.create(outfolder)
 
@@ -11,7 +14,6 @@ cuentas_done <- str_replace(dir(outfolder), ".rds", "")
 cuentas_left <- setdiff(str_replace(dir(infolder), ".rds", ""), cuentas_done)
 
 pb <- progress_bar$new(format = "[:bar] :current/:total (:percent)", total = length(cuentas_left))
-
 
 while(length(cuentas_left > 0)) {
   
