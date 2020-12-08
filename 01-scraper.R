@@ -152,5 +152,10 @@ descargar <- function(datos_buscador) {
   out2 <- download_excel(datos_buscador$href[[3]]) %>% 
     ingresos_particulares()
   
-  bind_rows(out1, out2)
+  el <- bind_rows(out1, out2)
+  
+  el$year <- unique(datos_buscador$year)
+  
+  return(el) # edge list
+  
 }

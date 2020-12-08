@@ -26,7 +26,9 @@ while(length(cuentas_left > 0)) {
   
   pb$tick()
   Sys.sleep(runif(1, 1, 3))     ## be kind
+  
 }
+
 
 
 
