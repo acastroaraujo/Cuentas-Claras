@@ -28,13 +28,26 @@ df <- bind_rows(
 ) 
 
 df %>% 
-  rename(source = de, target = para) %>% 
+  rename(source = de, target = para, source_id = de_id) %>% 
+  filter(source != "0") %>% 
   write_csv(str_glue("datos-{Sys.Date()}.csv"))
 
-# index <- df %>% 
-#   map_lgl(~ !is.character(.x$valor))
+
+
+df %>% 
+  rename(source = de, target = para, source_id = de_id) %>% 
+  filter(source != "0", year != 2014) %>% 
+  count(source, sort = TRUE) %>% View
+
+# out <- dir(out2, full.names = TRUE) %>% 
+#   map(read_rds) 
 # 
-# sum(!index)
+# new_index <- out[-error_index_2] %>% 
+#   map_lgl(~ is.character(.x$valor))
+# 
+# 
+# dir(out2, full.names = TRUE)[-error_index_2][new_index] %>% file.remove()
+# df_legislativo[!index][[1]] 
 
 
 # Merge -------------------------------------------------------------------
@@ -59,5 +72,10 @@ name_df <- as_tibble(which(lower.tri(mat, diag = FALSE), arr.ind = TRUE)) %>%
 name_df %>% arrange(dist) 
 
 # Having this, we can probably go back and change the names using the indices or something
+
+
+
+
+
 
 

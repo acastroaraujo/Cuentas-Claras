@@ -22,48 +22,6 @@ retrieve_n <- function(outfolder, y) {
   
 }
 
-# Territorial -------------------------------------------------------------
-
-outfolder <- "metadatos-territorial/"
-y <- "2015"
-
-if (!dir.exists(outfolder)) dir.create(outfolder)
-
-if (!is_empty(dir(outfolder))) {
- 
-  n <- retrieve_n(outfolder, y)
-  
-} else {
-  
-  n <- 1
-  
-}
-
-errores <- 0
-
-repeat {
-  
-  out <- try(cc_buscador_territorial(n, y))
-  filename <- str_glue("{outfolder}{y}-reporte-{n}.rds")
-  write_rds(out, filename, compress = "gz")
-  n <- n + 1
-  
-  errores <- if (any(class(out) == "try-error")) errores + 1 else 0
-  if (errores >= 15) break
-  
-  Sys.sleep(runif(1, 1, 3))     ## be kind
-  
-}
-
-# Debug
-
-error_index <- dir(outfolder, full.names = TRUE) %>% 
-  map(read_rds) %>% 
-  map_lgl(~ any(class(.x) == "try-error")) %>% 
-  which()
-
-length(error_index)
-
 
 # Legislativo -------------------------------------------------------------
 
@@ -92,7 +50,7 @@ repeat {
   n <- n + 1
   
   errores <- if (any(class(out) == "try-error")) errores + 1 else 0
-  if (errores >= 15) break
+  if (errores >= 5) break
   
   Sys.sleep(runif(1, 1, 3))     ## be kind
   
@@ -106,3 +64,47 @@ error_index <- dir(outfolder, full.names = TRUE) %>%
   which()
 
 length(error_index)
+
+
+# Territorial -------------------------------------------------------------
+
+outfolder <- "metadatos-territorial/"
+y <- "2019"
+
+if (!dir.exists(outfolder)) dir.create(outfolder)
+
+if (!is_empty(dir(outfolder))) {
+ 
+  n <- retrieve_n(outfolder, y)
+  
+} else {
+  
+  n <- 1
+  
+}
+
+errores <- 0
+
+repeat {
+  
+  out <- try(cc_buscador_territorial(n, y))
+  filename <- str_glue("{outfolder}{y}-reporte-{n}.rds")
+  write_rds(out, filename, compress = "gz")
+  n <- n + 1
+  
+  errores <- if (any(class(out) == "try-error")) errores + 1 else 0
+  if (errores >= 10) break
+  
+  Sys.sleep(runif(1, 1, 3))     ## be kind
+  
+}
+
+# Debug
+
+error_index <- dir(outfolder, full.names = TRUE) %>% 
+  map(read_rds) %>% 
+  map_lgl(~ any(class(.x) == "try-error")) %>% 
+  which()
+
+length(error_index)
+

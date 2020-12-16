@@ -108,6 +108,8 @@ ingresos_familia <- function(x) {
       mutate(valor = numeric())
   }
   
+  if (class(output$valor) == "character") stop("Hay algo raro en el formulario", call. = FALSE)
+  
   return(output)
   
 }
@@ -138,6 +140,9 @@ ingresos_particulares <- function(x) {
     output <- mutate_if(output, is.logical, as.character) %>% 
       mutate(valor = numeric())
   }
+  
+  if (class(output$valor) == "character") stop("Hay algo raro en el formulario", call. = FALSE)
+  
   return(output)
   
 }
@@ -149,12 +154,17 @@ descargar <- function(datos_buscador) {
   out1 <- download_excel(datos_buscador$href[[2]]) %>% 
     ingresos_familia()
   
+  out1$href <- datos_buscador$href[[2]]
+  
   out2 <- download_excel(datos_buscador$href[[3]]) %>% 
     ingresos_particulares()
+  
+  out2$href <- datos_buscador$href[[3]]
   
   el <- bind_rows(out1, out2)
   
   el$year <- unique(datos_buscador$year)
+  el$corporacion <- unique(datos_buscador$corporacion)
   
   return(el) # edge list
   
